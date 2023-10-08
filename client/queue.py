@@ -9,6 +9,33 @@ class Queue:
     def __init__(self):
         self._queue = []
     def add(self,elem:nodes.Node):
-        pass
-    def get(self,elem:nodes.Node):
-        pass
+        self._queue.append(elem)
+
+    def get(self) -> nodes.Node:
+        return self._queue.pop(0)
+
+    def get_sorted(self) -> nodes.Node:
+        """
+        Get Sorted
+        Instead of returning the first element, it first sorts
+        the queue, using function Lambda.
+        Lambda is a functional element in Python programming.
+        It consider value as a general value of the list to sort,
+        and it calls that element when the sort function is executed.
+        It is equal to say: Sort the list but get from each object inside
+        the list, the value that I want to sort, that is, in this case, the total cost.
+        """
+        self._queue.sort(key= lambda value: value.get_total_cost())
+        return self._queue.pop(0)
+
+
+    def get_list(self):
+        return self._queue
+
+    def print_queue(self,desc:str):
+        print(desc,":")
+        print("+last element+")
+        for i in range(1,len(self._queue) + 1):
+            self._queue[(-1)*i].print()
+        print("+first element+")
+
